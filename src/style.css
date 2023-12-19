@@ -129,7 +129,24 @@ table {
 }
 
 .content {
+  margin: 10px;
+}
+nav.tab-navigation{
+  position: fixed;
+  width: 100vw;
+  top: 0;
+}
+.tab-navigation ul{
   display: flex;
-  flex-direction: column;
-  margin: 50px 200px;
+  gap: 10px;
+  min-height: 40px;
+  padding: 10px;
+  background-color: aqua;
+}
+.tab-navigation ul li{
+  flex: 1 0 0;
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

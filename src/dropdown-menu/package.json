@@ -1,0 +1,11 @@
+{
+  "name": "dropdown-menu-fadein",
+  "version": "1.0.0",
+  "description": "A clickable dropdown menu that fades in",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
