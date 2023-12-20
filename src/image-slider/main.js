@@ -12,6 +12,7 @@ class Slider {
       paginationDot.classList.add("pag-dot");
       paginationDot.addEventListener("click", () => {
         this.jumpToSlide(index);
+        this.resetNextTimer();
       });
       this._pagination.appendChild(paginationDot);
       this._paginationDots.push(paginationDot);
@@ -41,15 +42,10 @@ class Slider {
     );
   }
   nextSlide() {
-    this.deactivateSlide(this._activeSlideIndex);
-    this._activeSlideIndex = (this._activeSlideIndex + 1) % this._slides.length;
-    this.activateSlide(this._activeSlideIndex);
+    this.jumpToSlide((this._activeSlideIndex + 1) % this._slides.length);
   }
   prevSlide() {
-    this.deactivateSlide(this._activeSlideIndex);
-    this._activeSlideIndex =
-      (this._activeSlideIndex - 1 + this._slides.length) % this._slides.length;
-    this.activateSlide(this._activeSlideIndex);
+    this.jumpToSlide((this._activeSlideIndex - 1 + this._slides.length) % this._slides.length) 
   }
 
   jumpToSlide(slideIndex) {
