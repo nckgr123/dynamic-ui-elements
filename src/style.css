@@ -150,17 +150,25 @@ nav.tab-navigation {
   justify-content: center;
   align-items: center;
 }
-
-.slide.active{
-  border: 10px red solid;
+.slide {
+  transition: opacity 1s ease-out;
+  opacity: 0;
 }
-.slider-pagination .pag-dot{
+.slide.active {
+  border: 1px red solid;
+  opacity: 1;
+}
+.slider-pagination .pag-dot {
   height: 25px;
   width: 25px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
 }
-.slider-pagination .pag-dot.active{
+.slider-pagination .pag-dot.active {
   background-color: red;
+}
+.slider-container.slider-initialized .slides {
+  position: relative;
+  transition: transform 1s ease-in-out;
 }

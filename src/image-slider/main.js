@@ -1,13 +1,17 @@
 class Slider {
   constructor(sliderNode) {
     this._showSlideForMS = 5000;
+    this._slideWidth = 500;
     this._container = sliderNode;
     this._container.classList.add("slider-initialized");
     this._slides = this._container.querySelectorAll(".slide");
+    this._slideArea = this._container.querySelector(".slides");
+    this._slideArea.style.width = this._slideWidth * this._slides.length+ 100 + "px";
 
     this._pagination = this._container.querySelector(".slider-pagination");
     this._paginationDots = [];
     this._slides.forEach((slide, index) => {
+      slide.style.width = this._slideWidth + "px";
       let paginationDot = document.createElement("span");
       paginationDot.classList.add("pag-dot");
       paginationDot.addEventListener("click", () => {
@@ -45,13 +49,16 @@ class Slider {
     this.jumpToSlide((this._activeSlideIndex + 1) % this._slides.length);
   }
   prevSlide() {
-    this.jumpToSlide((this._activeSlideIndex - 1 + this._slides.length) % this._slides.length) 
+    this.jumpToSlide(
+      (this._activeSlideIndex - 1 + this._slides.length) % this._slides.length
+    );
   }
 
   jumpToSlide(slideIndex) {
     this.deactivateSlide(this._activeSlideIndex);
     this._activeSlideIndex = slideIndex;
     this.activateSlide(this._activeSlideIndex);
+    this._slideArea.style.transform= `translateX(-${slideIndex*this._slideWidth}px)`;
   }
 
   activateSlide(slideIndex) {
