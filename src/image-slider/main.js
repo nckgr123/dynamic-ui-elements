@@ -7,15 +7,19 @@ class Slider {
 
     this._pagination = this._container.querySelector(".slider-pagination");
     this._paginationDots = [];
-    this._slides.forEach((slide) => {
+    this._slides.forEach((slide, index) => {
       let paginationDot = document.createElement("span");
       paginationDot.classList.add("pag-dot");
+      paginationDot.addEventListener("click", () => {
+        this.jumpToSlide(index);
+      });
       this._pagination.appendChild(paginationDot);
       this._paginationDots.push(paginationDot);
     });
 
     this._prev = this._container.querySelector(".slider-nav .prev");
     this._next = this._container.querySelector(".slider-nav .next");
+
     this._prev.addEventListener("click", () => {
       this.prevSlide();
       this.resetNextTimer();
@@ -47,6 +51,13 @@ class Slider {
       (this._activeSlideIndex - 1 + this._slides.length) % this._slides.length;
     this.activateSlide(this._activeSlideIndex);
   }
+
+  jumpToSlide(slideIndex) {
+    this.deactivateSlide(this._activeSlideIndex);
+    this._activeSlideIndex = slideIndex;
+    this.activateSlide(this._activeSlideIndex);
+  }
+
   activateSlide(slideIndex) {
     let slideToActivate = this._slides[slideIndex];
     this._paginationDots[slideIndex].classList.add("active");
